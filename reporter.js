@@ -121,7 +121,7 @@ var self = module.exports = {
 
             if (currentTest.isFailure) {
                 if (typeof screenshotsPath !== 'undefined') {
-                    find.file(/\.png$/, screenshotsPath + "/screenshots/" + currentModule, function (files) {
+                    find.file(/\.png$/, screenshotsPath + currentModule, function (files) {
                         files.forEach(function (file) {
                             fs.readFile(file, function (err, data) {
                                 allureReporter.addAttachment("screenshots", data, "image/png");
