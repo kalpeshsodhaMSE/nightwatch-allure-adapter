@@ -89,7 +89,7 @@ var self = module.exports = {
                 previousStepTimestamp = curCompletedStep.endTimestamp;
                 allureReporter.startStep(completedStep, curCompletedStep.startTimestamp);
                 for (assertion in  currentStep.assertions) {
-                    allureReporter.startStep(currentStep.assertions[assertion].message, curCompletedStep.startTimestamp);
+                    allureReporter.startStep(JSON.stringify(currentStep.assertions[assertion].message), curCompletedStep.startTimestamp);
                     allureReporter.endStep("passed", curCompletedStep.endTimestamp);
                 }
                 if (curCompletedStep.failures > 0 || curCompletedStep.errors > 0) {
@@ -99,7 +99,7 @@ var self = module.exports = {
                         if (currentAssertion.failure != false) {
                             var errorMessage = {
                                 failure: currentAssertion.failure,
-                                message: currentAssertion.message,
+                                message: JSON.stringify(currentAssertion.message),
                                 stacktrace: currentAssertion.stacktrace
                             }
                             currentTest.errorMessage = {
